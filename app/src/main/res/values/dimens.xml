@@ -3,4 +3,5 @@
     <dimen name="icon_size">200dp</dimen>
     <dimen name="marginDefault">16dp</dimen>
     <dimen name="marginDouble">32dp</dimen>
+    <dimen name="textSize">20sp</dimen>
 </resources>

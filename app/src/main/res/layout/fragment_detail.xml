@@ -56,7 +56,7 @@
             android:layout_marginStart="@dimen/marginDefault"
             android:layout_marginEnd="@dimen/marginDefault"
             android:layout_marginBottom="@dimen/marginDefault"
-            android:text="Button"
+            android:text="@string/ok"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />

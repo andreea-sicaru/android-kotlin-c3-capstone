@@ -34,40 +34,46 @@
             android:id="@+id/radioButtonGroup"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/marginDefault"
+            android:layout_marginEnd="@dimen/marginDefault"
             app:layout_constraintBottom_toTopOf="@+id/downloadButton"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageContainer"
-            android:layout_marginStart="@dimen/marginDefault"
-            android:layout_marginEnd="@dimen/marginDefault">
+            app:layout_constraintTop_toBottomOf="@+id/imageContainer">
 
             <RadioButton
                 android:id="@+id/radioButton1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Option 1" />
+                android:layout_marginBottom="@dimen/marginDefault"
+                android:text="@string/glide_image_loading_library_by_bumptech"
+                android:textSize="@dimen/textSize" />
 
             <RadioButton
                 android:id="@+id/radioButton2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Option 2" />
+                android:layout_marginBottom="@dimen/marginDefault"
+                android:text="@string/loadapp_current_repository_by_udacity"
+                android:textSize="@dimen/textSize" />
 
             <RadioButton
                 android:id="@+id/radioButton3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Option 3" />
+                android:layout_marginBottom="@dimen/marginDefault"
+                android:text="@string/retrofit_a_type_safe_http_client_for_android_and_java"
+                android:textSize="@dimen/textSize" />
         </RadioGroup>
 
         <Button
             android:id="@+id/downloadButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Button"
             android:layout_marginStart="@dimen/marginDefault"
             android:layout_marginEnd="@dimen/marginDefault"
             android:layout_marginBottom="@dimen/marginDefault"
+            android:text="@string/download"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
