@@ -6,5 +6,13 @@
     <fragment
         android:id="@+id/mainFragment"
         android:name="com.sia.android_kotlin_c3_capstone.main.MainFragment"
-        android:label="MainFragment" />
+        android:label="MainFragment" >
+        <action
+            android:id="@+id/action_mainFragment_to_detailFragment"
+            app:destination="@id/detailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailFragment"
+        android:name="com.sia.android_kotlin_c3_capstone.detail.DetailFragment"
+        android:label="DetailFragment" />
 </navigation>

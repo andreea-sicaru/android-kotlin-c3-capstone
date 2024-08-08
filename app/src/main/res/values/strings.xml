@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">LoadApp</string>
+    <string name="file_name">File name:</string>
+    <string name="status">Status:</string>
 </resources>
