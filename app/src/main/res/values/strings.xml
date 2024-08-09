@@ -7,4 +7,6 @@
     <string name="retrofit_a_type_safe_http_client_for_android_and_java">Retrofit - A type-safe HTTP client for Android and Java</string>
     <string name="download">Download</string>
     <string name="ok">Ok</string>
+    <string name="app_description">Download files from Internet</string>
+    <string name="we_are_loading">We are loading</string>
 </resources>

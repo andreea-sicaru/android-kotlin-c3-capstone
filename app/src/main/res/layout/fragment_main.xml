@@ -2,6 +2,12 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <data>
+        <variable
+            name="viewModel"
+            type="com.sia.android_kotlin_c3_capstone.main.MainViewModel" />
+    </data>
+
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -42,7 +48,7 @@
             app:layout_constraintTop_toBottomOf="@+id/imageContainer">
 
             <RadioButton
-                android:id="@+id/radioButton1"
+                android:id="@+id/glideRadioButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/marginDefault"
@@ -50,7 +56,7 @@
                 android:textSize="@dimen/textSize" />
 
             <RadioButton
-                android:id="@+id/radioButton2"
+                android:id="@+id/loadAppRadioButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/marginDefault"
@@ -58,7 +64,7 @@
                 android:textSize="@dimen/textSize" />
 
             <RadioButton
-                android:id="@+id/radioButton3"
+                android:id="@+id/retrofitRadioButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/marginDefault"
@@ -66,10 +72,10 @@
                 android:textSize="@dimen/textSize" />
         </RadioGroup>
 
-        <Button
+        <com.sia.android_kotlin_c3_capstone.loadingbutton.LoadingButton
             android:id="@+id/downloadButton"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/button_height"
             android:layout_marginStart="@dimen/marginDefault"
             android:layout_marginEnd="@dimen/marginDefault"
             android:layout_marginBottom="@dimen/marginDefault"

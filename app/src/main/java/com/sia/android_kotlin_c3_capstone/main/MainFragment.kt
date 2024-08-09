@@ -5,11 +5,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.navigation.findNavController
-import com.sia.android_kotlin_c3_capstone.R
+import androidx.lifecycle.ViewModelProvider
 import com.sia.android_kotlin_c3_capstone.databinding.FragmentMainBinding
 
 class MainFragment : Fragment() {
+
+    private val viewModel: MainViewModel by lazy {
+        ViewModelProvider(this).get(MainViewModel::class.java)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -18,8 +21,10 @@ class MainFragment : Fragment() {
     ): View {
         val binding = FragmentMainBinding.inflate(inflater)
 
+        binding.viewModel = viewModel
+
         binding.downloadButton.setOnClickListener { view: View ->
-            view.findNavController().navigate(R.id.action_mainFragment_to_detailFragment)
+            viewModel.downloadOptionSelected(binding.radioButtonGroup.checkedRadioButtonId)
         }
 
         return binding.root
