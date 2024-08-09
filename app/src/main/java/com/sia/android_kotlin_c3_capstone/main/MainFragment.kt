@@ -1,6 +1,7 @@
 package com.sia.android_kotlin_c3_capstone.main
 
 import android.app.DownloadManager
+import android.content.Intent
 import android.content.IntentFilter
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,6 +11,7 @@ import androidx.core.content.ContextCompat
 import androidx.core.content.ContextCompat.registerReceiver
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.sia.android_kotlin_c3_capstone.DetailsReceiver
 import com.sia.android_kotlin_c3_capstone.DownloadReceiver
 import com.sia.android_kotlin_c3_capstone.databinding.FragmentMainBinding
 

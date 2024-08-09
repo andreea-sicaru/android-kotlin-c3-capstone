@@ -2,6 +2,7 @@ package com.sia.android_kotlin_c3_capstone
 
 import android.app.DownloadManager
 import android.app.NotificationManager
+import android.app.PendingIntent
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
@@ -11,7 +12,8 @@ import androidx.core.content.ContextCompat
 import androidx.core.content.ContextCompat.getSystemService
 
 private val NOTIFICATION_ID = 0
-
+private val REQUEST_CODE = 0
+private val FLAGS = 0
 class DownloadReceiver : BroadcastReceiver() {
     override fun onReceive(context: Context, intent: Intent) {
         val id = intent.getLongExtra(DownloadManager.EXTRA_DOWNLOAD_ID, -1)
@@ -48,9 +50,16 @@ class DownloadReceiver : BroadcastReceiver() {
     }
 
     private fun sendNotification(context: Context) {
-        val notificationManager = ContextCompat.getSystemService(
+        val notificationManager = getSystemService(
             context, NotificationManager::class.java
         ) as NotificationManager
+
+        val detailsIntent = Intent(context, DetailsReceiver::class.java)
+        val detailsPendingIntent: PendingIntent = PendingIntent.getBroadcast(
+            context,
+            REQUEST_CODE,
+            detailsIntent,
+            PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE)
 
 
         val notificationBuilder = NotificationCompat.Builder(
@@ -63,7 +72,7 @@ class DownloadReceiver : BroadcastReceiver() {
             .addAction(
                 R.drawable.icon_download,
                 context.getString(R.string.download_notification_action),
-                null
+                detailsPendingIntent
             )
             .setPriority(NotificationCompat.PRIORITY_DEFAULT)
             .setAutoCancel(true)
