@@ -1,9 +1,104 @@
 <?xml version="1.0" encoding="utf-8"?>
-<fragment xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/nav_host_fragment"
-    android:name="androidx.navigation.fragment.NavHostFragment"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    app:defaultNavHost="true"
-    app:navGraph="@navigation/main_nav_graph" />
+    tools:context=".MainActivity">
+
+    <!--    <com.google.android.material.appbar.AppBarLayout-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="wrap_content">-->
+
+    <!--        <androidx.appcompat.widget.Toolbar-->
+    <!--            android:id="@+id/toolbar"-->
+    <!--            android:layout_width="match_parent"-->
+    <!--            android:layout_height="?attr/actionBarSize"-->
+    <!--            android:background="?attr/colorPrimary" />-->
+
+    <!--    </com.google.android.material.appbar.AppBarLayout>-->
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/main_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        tools:context=".MainActivity"
+        tools:showIn="@layout/activity_main">
+
+
+        <LinearLayout
+            android:id="@+id/imageContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorAccent"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toTopOf="@+id/radioButtonGroup"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="spread_inside">
+
+            <ImageView
+                android:id="@+id/iconImageView"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/icon_size"
+                android:layout_weight="1"
+                app:srcCompat="@drawable/icon_download"
+                app:tint="@color/colorPrimary" />
+
+        </LinearLayout>
+
+
+        <RadioGroup
+            android:id="@+id/radioButtonGroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/marginDefault"
+            android:layout_marginEnd="@dimen/marginDefault"
+            app:layout_constraintBottom_toTopOf="@+id/downloadButton"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageContainer">
+
+            <RadioButton
+                android:id="@+id/glideRadioButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/marginDefault"
+                android:text="@string/glide_image_loading_library_by_bumptech"
+                android:textSize="@dimen/textSize" />
+
+            <RadioButton
+                android:id="@+id/loadAppRadioButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/marginDefault"
+                android:text="@string/loadapp_current_repository_by_udacity"
+                android:textSize="@dimen/textSize" />
+
+            <RadioButton
+                android:id="@+id/retrofitRadioButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/marginDefault"
+                android:text="@string/retrofit_a_type_safe_http_client_for_android_and_java"
+                android:textSize="@dimen/textSize" />
+        </RadioGroup>
+
+        <com.sia.android_kotlin_c3_capstone.loadingbutton.LoadingButton
+            android:id="@+id/downloadButton"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/button_height"
+            android:layout_marginStart="@dimen/marginDefault"
+            android:layout_marginEnd="@dimen/marginDefault"
+            android:layout_marginBottom="@dimen/marginDefault"
+            android:text="@string/download"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/radioButtonGroup" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -27,7 +27,16 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".DetailActivity"
+            android:label="@string/app_name"
+            android:theme="@style/Theme.AppCompat.DayNight" />
 
+        <receiver
+            android:name=".DownloadReceiver"
+            android:enabled="true"
+            android:exported="false"
+            />
         <receiver
             android:name=".DetailsReceiver"
             android:enabled="true"

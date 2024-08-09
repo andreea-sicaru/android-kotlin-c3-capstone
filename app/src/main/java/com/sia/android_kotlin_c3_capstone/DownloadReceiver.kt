@@ -6,14 +6,13 @@ import android.app.PendingIntent
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
-import android.util.Log
 import androidx.core.app.NotificationCompat
-import androidx.core.content.ContextCompat
 import androidx.core.content.ContextCompat.getSystemService
 
 private val NOTIFICATION_ID = 0
 private val REQUEST_CODE = 0
 private val FLAGS = 0
+
 class DownloadReceiver : BroadcastReceiver() {
     override fun onReceive(context: Context, intent: Intent) {
         val id = intent.getLongExtra(DownloadManager.EXTRA_DOWNLOAD_ID, -1)
@@ -23,19 +22,21 @@ class DownloadReceiver : BroadcastReceiver() {
         val query = DownloadManager.Query().setFilterById(id)
         val cursor = downloadManager.query(query)
 
+        var title = ""
+        var status = 0
         if (cursor != null && cursor.moveToFirst()) {
             val ids = cursor.getLong(cursor.getColumnIndex(DownloadManager.COLUMN_ID))
-            val title = cursor.getString(cursor.getColumnIndex(DownloadManager.COLUMN_TITLE))
-            val status = cursor.getInt(cursor.getColumnIndex(DownloadManager.COLUMN_STATUS))
+            title = cursor.getString(cursor.getColumnIndex(DownloadManager.COLUMN_TITLE))
+            status = cursor.getInt(cursor.getColumnIndex(DownloadManager.COLUMN_STATUS))
             val uri = cursor.getString(cursor.getColumnIndex(DownloadManager.COLUMN_URI))
             val localUri =
                 cursor.getString(cursor.getColumnIndex(DownloadManager.COLUMN_LOCAL_URI))
 
             // Process the data
-            Log.d(
-                "DownloadManager",
-                "ID: $ids, Title: $title, Status: $status, URI: $uri, Local URI: $localUri"
-            )
+//            Log.d(
+//                "DownloadManager",
+//                "ID: $ids, Title: $title, Status: $status, URI: $uri, Local URI: $localUri"
+//            )
             cursor.close()
         }
 
@@ -46,20 +47,25 @@ class DownloadReceiver : BroadcastReceiver() {
 //            } while (cursor.moveToNext())
 //        }
 
-        sendNotification(context)
-    }
-
-    private fun sendNotification(context: Context) {
-        val notificationManager = getSystemService(
-            context, NotificationManager::class.java
-        ) as NotificationManager
-
-        val detailsIntent = Intent(context, DetailsReceiver::class.java)
-        val detailsPendingIntent: PendingIntent = PendingIntent.getBroadcast(
+        val detailsIntent = Intent(context, DetailActivity::class.java).apply {
+            flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+        }
+        detailsIntent.putExtra("title", title)
+        detailsIntent.putExtra("status", status)
+        val detailsPendingIntent: PendingIntent = PendingIntent.getActivity(
             context,
             REQUEST_CODE,
             detailsIntent,
-            PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE)
+            PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
+        )
+
+        sendNotification(context, detailsPendingIntent)
+    }
+
+    private fun sendNotification(context: Context, detailsPendingIntent: PendingIntent) {
+        val notificationManager = getSystemService(
+            context, NotificationManager::class.java
+        ) as NotificationManager
 
 
         val notificationBuilder = NotificationCompat.Builder(
