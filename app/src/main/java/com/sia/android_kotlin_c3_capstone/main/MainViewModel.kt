@@ -67,7 +67,9 @@ class MainViewModel(private val app: Application) : AndroidViewModel(app) {
         val request = DownloadManager.Request(Uri.parse(option.value))
             .setTitle(app.resources.getString(R.string.app_name))
             .setDescription(app.resources.getString(R.string.app_description))
-            .setRequiresCharging(false).setAllowedOverMetered(true).setAllowedOverRoaming(true)
+            .setRequiresCharging(false)
+            .setAllowedOverMetered(true)
+            .setAllowedOverRoaming(true)
 
         val downloadManager = ContextCompat.getSystemService(
             app.applicationContext, DownloadManager::class.java
