@@ -14,4 +14,9 @@
     <string name="download_notification_title">Download Complete</string>
     <string name="download_notification_message">Download is now complete. Enjoy!</string>
     <string name="download_notification_action">Check the status</string>
+    <string name="status_fail">Fail</string>
+    <string name="status_pending">Pending</string>
+    <string name="status_running">Running</string>
+    <string name="status_paused">Paused</string>
+    <string name="status_success">Success</string>
 </resources>
