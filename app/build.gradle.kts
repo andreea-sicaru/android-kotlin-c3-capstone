@@ -10,7 +10,7 @@ android {
 
     defaultConfig {
         applicationId = "com.sia.android_kotlin_c3_capstone"
-        minSdk = 24
+        minSdk = 26
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
