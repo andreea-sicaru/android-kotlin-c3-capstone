@@ -1,0 +1,150 @@
+<MotionScene xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:motion="http://schemas.android.com/tools">
+
+    <Transition
+        app:constraintSetEnd="@id/end"
+        app:constraintSetStart="@id/start"
+        app:duration="2000"
+        motion:autoTransition="animateToEnd"
+        motion:motionInterpolator="linear"
+        motion:staggered="0.25">
+
+        <KeyFrameSet>
+            <KeyAttribute
+                android:alpha="0.5"
+                app:framePosition="50"
+                app:motionTarget="@id/fileNameLabelTextView" />
+        </KeyFrameSet>
+        <KeyFrameSet>
+            <KeyAttribute
+                android:alpha="0.5"
+                app:framePosition="85"
+                app:motionTarget="@id/fileName" />
+        </KeyFrameSet>
+
+        <KeyFrameSet>
+            <KeyAttribute
+                android:alpha="0.5"
+                app:framePosition="85"
+                app:motionTarget="@id/statusLabelTextView" />
+        </KeyFrameSet>
+        <KeyFrameSet>
+            <KeyAttribute
+                android:alpha="0.5"
+                app:framePosition="85"
+                app:motionTarget="@id/status" />
+        </KeyFrameSet>
+
+        <KeyFrameSet>
+            <KeyAttribute
+                android:translationY="-50dp"
+                app:framePosition="50"
+                app:motionTarget="@id/okButton" />
+        </KeyFrameSet>
+    </Transition>
+
+    <ConstraintSet android:id="@+id/start">
+
+        <Constraint
+            android:id="@id/fileNameLabelTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:alpha="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Constraint
+            android:id="@id/fileName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/marginDouble"
+            android:layout_marginEnd="@dimen/marginDefault"
+            android:alpha="0.0"
+            android:ellipsize="end"
+            android:maxLines="3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/fileNameLabelTextView"
+            app:layout_constraintTop_toTopOf="@+id/fileNameLabelTextView" />
+
+        <Constraint
+            android:id="@id/statusLabelTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/marginDouble"
+            android:alpha="0.0"
+            app:layout_constraintStart_toStartOf="@+id/fileNameLabelTextView"
+            app:layout_constraintTop_toBottomOf="@+id/fileNameLabelTextView" />
+
+        <Constraint
+            android:id="@id/status"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:alpha="0.0"
+            app:layout_constraintStart_toStartOf="@+id/fileName"
+            app:layout_constraintTop_toTopOf="@+id/statusLabelTextView" />
+
+        <Constraint
+            android:id="@+id/okButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:translationX="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </ConstraintSet>
+
+    <ConstraintSet android:id="@+id/end">
+
+        <Constraint
+            android:id="@id/fileNameLabelTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:alpha="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Constraint
+            android:id="@id/fileName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/marginDouble"
+            android:layout_marginEnd="@dimen/marginDefault"
+            android:alpha="1.0"
+            android:ellipsize="end"
+            android:maxLines="3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/fileNameLabelTextView"
+            app:layout_constraintTop_toTopOf="@+id/fileNameLabelTextView" />
+
+
+        <Constraint
+            android:id="@id/statusLabelTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/marginDouble"
+            android:alpha="1.0"
+            app:layout_constraintStart_toStartOf="@+id/fileNameLabelTextView"
+            app:layout_constraintTop_toBottomOf="@+id/fileNameLabelTextView" />
+
+        <Constraint
+            android:id="@id/status"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:alpha="1.0"
+            app:layout_constraintStart_toStartOf="@+id/fileName"
+            app:layout_constraintTop_toTopOf="@+id/statusLabelTextView" />
+
+
+        <Constraint
+            android:id="@+id/okButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:translationX="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+    </ConstraintSet>
+
+</MotionScene>

@@ -1,94 +1,61 @@
-<?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.motion.widget.MotionLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/motionLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="@dimen/marginDefault"
+    app:layoutDescription="@xml/activity_detail_scene"
     tools:context=".DetailActivity">
 
-    <!--    <com.google.android.material.appbar.AppBarLayout-->
-    <!--        android:id="@+id/appBarLayout"-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        app:layout_constraintEnd_toEndOf="parent"-->
-    <!--        app:layout_constraintStart_toStartOf="parent"-->
-    <!--        app:layout_constraintTop_toTopOf="parent">-->
+    <TextView
+        android:id="@+id/fileNameLabelTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/marginDefault"
+        android:layout_marginTop="@dimen/marginDouble"
+        android:text="@string/file_name"
+        android:textSize="@dimen/textSize"
+        tools:text="File Name:" />
 
-    <!--        <androidx.appcompat.widget.Toolbar-->
-    <!--            android:id="@+id/toolbar"-->
-    <!--            android:layout_width="match_parent"-->
-    <!--            android:layout_height="?attr/actionBarSize"-->
-    <!--            android:background="?attr/colorPrimary" />-->
+    <TextView
+        android:id="@+id/fileName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/marginDouble"
+        android:layout_marginEnd="@dimen/marginDefault"
+        android:ellipsize="end"
+        android:maxLines="5"
+        android:minLines="3"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="@dimen/textSize"
+        tools:text="Glide - Image Loading Library for Android By Bump Tech" />
 
-    <!--    </com.google.android.material.appbar.AppBarLayout>-->
+    <TextView
+        android:id="@+id/statusLabelTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/marginDouble"
+        android:text="@string/status"
+        android:textSize="@dimen/textSize"
+        tools:text="Status:" />
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <TextView
+        android:id="@+id/status"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="@dimen/textSize"
+        tools:text="Success" />
+
+    <Button
+        android:id="@+id/okButton"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".DetailActivity"
-        tools:showIn="@layout/activity_detail">
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/marginDefault"
+        android:layout_marginEnd="@dimen/marginDefault"
+        android:layout_marginBottom="@dimen/marginDefault"
+        android:background="@color/colorAccent"
+        android:text="@string/ok" />
 
-        <TextView
-            android:id="@+id/fileNameLabelTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/marginDefault"
-            android:layout_marginTop="@dimen/marginDefault"
-            android:text="@string/file_name"
-            android:textSize="@dimen/textSize"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="File Name:" />
-
-        <TextView
-            android:id="@+id/fileName"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/marginDouble"
-            android:layout_marginEnd="@dimen/marginDefault"
-            android:ellipsize="end"
-            android:maxLines="3"
-            android:textColor="@color/colorPrimaryDark"
-            android:textSize="@dimen/textSize"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/fileNameLabelTextView"
-            app:layout_constraintTop_toTopOf="@+id/fileNameLabelTextView"
-            tools:text="Glide - Image Loading Library for Android By Bump Tech" />
-
-        <TextView
-            android:id="@+id/statusLabelTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/marginDouble"
-            android:text="@string/status"
-            android:textSize="@dimen/textSize"
-            app:layout_constraintStart_toStartOf="@+id/fileNameLabelTextView"
-            app:layout_constraintTop_toBottomOf="@+id/fileNameLabelTextView"
-            tools:text="Status:" />
-
-        <TextView
-            android:id="@+id/status"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:textSize="@dimen/textSize"
-            android:textColor="@color/colorPrimaryDark"
-            app:layout_constraintStart_toStartOf="@+id/fileName"
-            app:layout_constraintTop_toTopOf="@+id/statusLabelTextView"
-            tools:text="Success" />
-
-        <Button
-            android:id="@+id/okButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/marginDefault"
-            android:layout_marginEnd="@dimen/marginDefault"
-            android:layout_marginBottom="@dimen/marginDefault"
-            android:background="@color/colorAccent"
-            android:text="@string/ok"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+</androidx.constraintlayout.motion.widget.MotionLayout>

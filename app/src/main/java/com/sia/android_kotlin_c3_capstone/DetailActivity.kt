@@ -16,19 +16,23 @@ class DetailActivity : AppCompatActivity() {
 
         binding.fileName.text = intent.getStringExtra("title")
         val status = intent.getIntExtra("status", 0)
-        when(status){
+        when (status) {
             1 -> {
                 binding.status.text = getString(R.string.status_pending)
             }
+
             2 -> {
                 binding.status.text = getString(R.string.status_running)
             }
+
             4 -> {
                 binding.status.text = getString(R.string.status_paused)
             }
+
             8 -> {
                 binding.status.text = getString(R.string.status_success)
             }
+
             16 -> {
                 binding.status.text = getString(R.string.status_fail)
                 binding.status.setTextColor(getColor(R.color.colorRed))
@@ -41,5 +45,12 @@ class DetailActivity : AppCompatActivity() {
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
         }
+
+//         Start the animation
+//        binding.motionLayout.setTransitionDuration(5000)
+//        binding.motionLayout.transitionToEnd()
+        binding.motionLayout.post { binding.motionLayout.transitionToEnd() }
+//
+//        binding.motionLayout.transitionToStart()
     }
 }
