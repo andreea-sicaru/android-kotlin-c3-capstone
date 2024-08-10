@@ -58,7 +58,7 @@ class LoadingButton @JvmOverloads constructor(
     init {
         context.withStyledAttributes(attrs, R.styleable.LoadingButton) {
             downloadText = getString(R.styleable.LoadingButton_downloadText) ?: downloadText
-            loadingText = getString(R.styleable.LoadingButton_loadingColor) ?: loadingText
+            loadingText = getString(R.styleable.LoadingButton_loadingText) ?: loadingText
             baseColor = getColor(R.styleable.LoadingButton_baseColor, baseColor)
             loadingColor = getColor(R.styleable.LoadingButton_loadingColor, loadingColor)
             textColor = getColor(R.styleable.LoadingButton_textColor, textColor)

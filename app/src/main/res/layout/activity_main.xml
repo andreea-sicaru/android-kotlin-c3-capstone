@@ -6,18 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <!--    <com.google.android.material.appbar.AppBarLayout-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="wrap_content">-->
-
-    <!--        <androidx.appcompat.widget.Toolbar-->
-    <!--            android:id="@+id/toolbar"-->
-    <!--            android:layout_width="match_parent"-->
-    <!--            android:layout_height="?attr/actionBarSize"-->
-    <!--            android:background="?attr/colorPrimary" />-->
-
-    <!--    </com.google.android.material.appbar.AppBarLayout>-->
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/main_layout"
         android:layout_width="match_parent"
@@ -94,10 +82,16 @@
             android:layout_marginEnd="@dimen/marginDefault"
             android:layout_marginBottom="@dimen/marginDefault"
             android:text="@string/download"
+            app:baseColor="@color/colorPrimary"
+            app:circleColor="@color/colorAccent"
+            app:downloadText="@string/download"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/radioButtonGroup" />
+            app:layout_constraintTop_toBottomOf="@+id/radioButtonGroup"
+            app:loadingColor="@color/colorPrimaryDark"
+            app:loadingText="@string/we_are_loading"
+            app:textColor="@color/colorOnSurface" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
