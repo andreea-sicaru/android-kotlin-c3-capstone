@@ -13,7 +13,7 @@ private val NOTIFICATION_ID = 0
 private val REQUEST_CODE = 0
 private val FLAGS = 0
 
-class DownloadReceiver : BroadcastReceiver() {
+class DownloadReceiver(private val listener: Listener) : BroadcastReceiver() {
     override fun onReceive(context: Context, intent: Intent) {
         val id = intent.getLongExtra(DownloadManager.EXTRA_DOWNLOAD_ID, -1)
 
@@ -59,6 +59,7 @@ class DownloadReceiver : BroadcastReceiver() {
             PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
         )
 
+        listener.downloadFinished()
         sendNotification(context, detailsPendingIntent)
     }
 
@@ -85,4 +86,8 @@ class DownloadReceiver : BroadcastReceiver() {
 
         notificationManager.notify(NOTIFICATION_ID, notificationBuilder.build())
     }
+}
+
+interface Listener {
+    fun downloadFinished()
 }
