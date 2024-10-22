@@ -73,6 +73,11 @@ class LoadingButton @JvmOverloads constructor(
         return true
     }
 
+    fun stopAnimation() {
+        valueAnimator.end()
+        buttonState = ButtonState.Completed
+    }
+
     private fun startLoadingAnimation() {
         valueAnimator = ValueAnimator.ofFloat(0f, 1f).apply {
             duration = 2000
@@ -95,6 +100,8 @@ class LoadingButton @JvmOverloads constructor(
                 }
             })
         }
+        valueAnimator.repeatCount = ValueAnimator.INFINITE
+
         valueAnimator.start()
     }
 
