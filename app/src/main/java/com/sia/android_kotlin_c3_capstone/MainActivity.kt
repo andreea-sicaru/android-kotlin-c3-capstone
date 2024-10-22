@@ -1,6 +1,9 @@
 package com.sia.android_kotlin_c3_capstone
 
 import android.app.DownloadManager
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.content.Context
 import android.content.IntentFilter
 import android.content.pm.PackageManager
 import android.net.Uri
@@ -15,14 +18,14 @@ import androidx.core.content.ContextCompat
 import androidx.core.content.ContextCompat.registerReceiver
 import com.sia.android_kotlin_c3_capstone.databinding.ActivityMainBinding
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), Listener {
 
     private lateinit var binding: ActivityMainBinding
 
     private var downloadID: Long = 0
 
     private lateinit var requestPermissionLauncher: ActivityResultLauncher<String>
-    private val downloadReceiver = DownloadReceiver()
+    private val downloadReceiver = DownloadReceiver(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -65,6 +68,27 @@ class MainActivity : AppCompatActivity() {
         )
 
         binding.downloadButton.setOnClickListener { downloadOptionSelected(binding.radioButtonGroup.checkedRadioButtonId) }
+
+        createNotificationChannel()
+    }
+
+    override fun downloadFinished() {
+        binding.downloadButton.stopAnimation()
+    }
+
+    private fun createNotificationChannel() {
+        val channelId = applicationContext.getString(R.string.download_notification_channel_id)
+        val channelName = "Download notifications"
+        val importance = NotificationManager.IMPORTANCE_HIGH
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val channel = NotificationChannel(channelId, channelName, importance)
+            channel.description = "Download notifications"
+
+            // Register the channel with the system
+            val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+            notificationManager.createNotificationChannel(channel)
+        }
     }
 
     fun downloadOptionSelected(checkedRadioButtonId: Int) {
@@ -101,11 +125,6 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    override fun onDestroy() {
-        unregisterReceiver(downloadReceiver)
-
-        super.onDestroy()
-    }
 
     companion object {
         enum class DownloadOption(val value: String) {
