@@ -2,10 +2,15 @@ package com.sia.android_kotlin_c3_capstone
 
 import android.app.DownloadManager
 import android.content.IntentFilter
+import android.content.pm.PackageManager
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.widget.Toast
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.content.ContextCompat.registerReceiver
 import com.sia.android_kotlin_c3_capstone.databinding.ActivityMainBinding
@@ -16,15 +21,45 @@ class MainActivity : AppCompatActivity() {
 
     private var downloadID: Long = 0
 
+    private lateinit var requestPermissionLauncher: ActivityResultLauncher<String>
+    private val downloadReceiver = DownloadReceiver()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        // Sets up permissions request launcher for API 13+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            if (ActivityCompat.checkSelfPermission(
+                    this,
+                    android.Manifest.permission.POST_NOTIFICATIONS
+                ) != PackageManager.PERMISSION_GRANTED
+            ) {
+                requestPermissionLauncher =
+                    registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted: Boolean ->
+                        if (isGranted) {
+                            Toast.makeText(
+                                applicationContext,
+                                "Permission granted",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        } else {
+                            Toast.makeText(
+                                applicationContext,
+                                "Permission denied",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
+                    }
+                requestPermissionLauncher.launch(android.Manifest.permission.POST_NOTIFICATIONS)
+            }
+        }
+
         registerReceiver(
             applicationContext,
-            DownloadReceiver(),
+            downloadReceiver,
             IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE),
             ContextCompat.RECEIVER_EXPORTED
         )
@@ -64,6 +99,12 @@ class MainActivity : AppCompatActivity() {
             DownloadOption.LOADAPP -> resources.getString(R.string.loadapp_current_repository_by_udacity)
             DownloadOption.RETROFIT -> resources.getString(R.string.retrofit_a_type_safe_http_client_for_android_and_java)
         }
+    }
+
+    override fun onDestroy() {
+        unregisterReceiver(downloadReceiver)
+
+        super.onDestroy()
     }
 
     companion object {
